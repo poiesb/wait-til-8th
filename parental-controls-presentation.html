@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raising Kids in a Connected World</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css" />
+  <style>
+  /* ───────────────────────────────────────────
+     DESIGN TOKENS
+  ─────────────────────────────────────────── */
+  :root {
+    --ink:       #1c1917;
+    --ink-mid:   #57534e;
+    --ink-light: #a8a29e;
+    --surface:   #ffffff;
+    --bg:        #fafaf9;
+    --rule:      #e7e5e4;
+
+    --emerald:   #059669;
+    --emerald-dk:#064e3b;
+    --emerald-lt:#ecfdf5;
+
+    --slate:     #292524;
+    --slate-mid: #44403c;
+    --slate-lt:  #f5f5f4;
+
+    --amber:     #b45309;
+    --amber-lt:  #fffbeb;
+
+    --coral:     #e11d48;
+    --coral-lt:  #ffe4e6;
+
+    --blue:      #2563eb;
+    --blue-lt:   #dbeafe;
+
+    --shadow:    rgba(28, 25, 23, 0.08);
+    --shadow-md: rgba(28, 25, 23, 0.12);
+  }
+
+  /* ───────────────────────────────────────────
+     BASE REVEAL OVERRIDES
+  ─────────────────────────────────────────── */
+  .reveal-viewport { background: #f0efed; }
+
+  .reveal {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 21px;
+    color: var(--ink);
+  }
+
+  /* Kill all default heading styles */
+  .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+    text-transform: none;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5em 0;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+  .reveal h1 { font-size: 2.6em; }
+  .reveal h2 { font-size: 1.5em;  }
+  .reveal h3 { font-size: 1em;    font-weight: 600; }
+
+  .reveal p  { font-size: 0.9em; line-height: 1.65; margin: 0 0 0.6em; }
+  .reveal ul { list-style: none; padding: 0; margin: 0; }
+  .reveal ul li { font-size: 0.88em; line-height: 1.5; padding: 0.2em 0 0.2em 1.4em; position: relative; }
+  .reveal ul li::before { content: "→"; position: absolute; left: 0; color: var(--emerald); font-weight: 700; }
+  /* Card lists — compact timeline style (exclude checklists and steps) */
+  .card ul:not(.checklist):not(.steps) { border-left: 2px solid var(--rule); margin-left: 4px; padding-left: 0; }
+  .card ul:not(.checklist):not(.steps) li { padding-left: 16px; position: relative; text-align: left; }
+  .card ul:not(.checklist):not(.steps) li::before {
+    content: "";
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--emerald);
+    position: absolute;
+    left: -4px;
+    top: 0.55em;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: normal;
+  }
+
+  /* Steps inside cards — connect numbered badges with vertical line */
+  .card .steps { border-left: 2px solid var(--emerald-lt); margin-left: 11px; padding-left: 0; }
+  .card .steps li { padding-left: 10px !important; position: relative; }
+  .card .steps li::before { margin-left: -23px; position: relative; z-index: 1; }
+
+  .res-block ul li::before { content: "·"; font-size: 1.2em; line-height: 1; top: 0.15em; font-weight: 700; }
+
+  .reveal section { box-sizing: border-box; height: 100%; }
+
+  /* ───────────────────────────────────────────
+     SLIDE SHELL — every content slide
+  ─────────────────────────────────────────── */
+  .slide {
+    width: 100%;
+    height: 100%;
+    padding: 28px 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px var(--shadow);
+    border: 1px solid rgba(28,25,23,0.04);
+  }
+
+  .slide-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1.5px solid var(--rule);
+    flex-shrink: 0;
+  }
+  .slide-header h2 { margin: 0; font-size: 1.3em; color: var(--ink); }
+  .slide-header .icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1em; flex-shrink: 0;
+    background: var(--emerald-lt);
+    box-shadow: 0 1px 2px var(--shadow);
+  }
+
+  .slide-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 12px;
+  }
+
+  /* ───────────────────────────────────────────
+     COVER SLIDE
+  ─────────────────────────────────────────── */
+  .cover {
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 80%, rgba(5,150,105,0.15) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 80% 20%, rgba(5,150,105,0.10) 0%, transparent 70%),
+      linear-gradient(160deg, #1c1917 0%, #292524 100%) !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    padding: 52px;
+    box-sizing: border-box;
+  }
+  .cover .eyebrow {
+    font-size: 0.75em;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--emerald);
+    margin-bottom: 20px;
+    background: rgba(5,150,105,0.1);
+    border: 1px solid rgba(5,150,105,0.25);
+    border-radius: 20px;
+    padding: 6px 16px;
+  }
+  .cover h1 {
+    color: #fff;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 2.8em;
+    letter-spacing: -0.025em;
+    margin-bottom: 16px;
+  }
+  .cover .subtitle { color: rgba(255,255,255,0.65); font-size: 1em; margin-bottom: 48px; }
+  .cover .presenter-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 40px;
+    padding: 8px 20px;
+    color: #fff;
+    font-size: 0.9em;
+    font-weight: 500;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* ───────────────────────────────────────────
+     SECTION BREAK SLIDE
+  ─────────────────────────────────────────── */
+  .section-break {
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 30%, rgba(5,150,105,0.15) 0%, transparent 70%),
+      linear-gradient(160deg, #064e3b 0%, #022c22 100%) !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    padding: 52px 64px;
+    box-sizing: border-box;
+  }
+  .section-break .section-num {
+    font-size: 0.75em;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--emerald);
+    margin-bottom: 12px;
+  }
+  .section-break h1 {
+    color: #fff;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 2.4em;
+    letter-spacing: -0.025em;
+    margin-bottom: 12px;
+  }
+  .section-break p  { color: rgba(255,255,255,0.7); font-size: 1em; max-width: 520px; margin: 0; }
+  .section-break .big-icon {
+    font-size: 3em;
+    margin-bottom: 20px;
+    display: block;
+    line-height: 1;
+  }
+
+  .section-break.dark-blue {
+    background:
+      radial-gradient(ellipse 50% 40% at 70% 30%, rgba(5,150,105,0.08) 0%, transparent 70%),
+      linear-gradient(160deg, #292524 0%, #1c1917 100%) !important;
+  }
+  .section-break.coral-bg {
+    background:
+      radial-gradient(ellipse 50% 40% at 30% 70%, rgba(225,29,72,0.15) 0%, transparent 70%),
+      linear-gradient(160deg, #9f1239 0%, #881337 100%) !important;
+  }
+
+  /* ───────────────────────────────────────────
+     CARD SYSTEM
+  ─────────────────────────────────────────── */
+  .cards {
+    display: grid;
+    gap: 14px;
+    flex: 1;
+    overflow: hidden;
+  }
+  .cards.col-2 { grid-template-columns: 1fr 1fr; }
+  .cards.col-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .card {
+    background: var(--bg);
+    border-radius: 12px;
+    padding: 20px 22px;
+    border: none;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow: hidden;
+    text-align: left;
+  }
+  /* Tighter padding for col-3 grids to prevent overflow */
+  .col-3 .card { padding: 18px 20px; }
+
+  .card h3 {
+    font-size: 0.88em;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card p, .card ul { font-size: 0.88em; margin: 0; }
+  .card ul li { font-size: 1em; padding-top: 0.15em; padding-bottom: 0.15em; }
+
+  /* Card accent variants — soft surface tints */
+  .card.green  { background: var(--emerald-lt); }
+  .card.amber  { background: var(--amber-lt); }
+  .card.slate  { background: var(--slate-lt); }
+
+  /* ───────────────────────────────────────────
+     STEP LIST
+  ─────────────────────────────────────────── */
+  .steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+  .steps li {
+    counter-increment: s;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.85em;
+    line-height: 1.45;
+    padding: 0 !important;
+  }
+  .steps li::before {
+    content: counter(s);
+    background: var(--emerald);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8em;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    position: static;
+    box-shadow: 0 2px 6px rgba(5,150,105,0.3);
+  }
+
+  /* ───────────────────────────────────────────
+     COMPARISON TABLE
+  ─────────────────────────────────────────── */
+  .cmp-table { width: 100%; border-collapse: collapse; font-size: 0.78em; }
+  .cmp-table thead th {
+    background: var(--slate);
+    color: #fff;
+    padding: 9px 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .cmp-table thead th:first-child { border-radius: 8px 0 0 0; }
+  .cmp-table thead th:last-child  { border-radius: 0 8px 0 0; }
+  .cmp-table tbody td { padding: 8px 12px; border-bottom: 1px solid var(--rule); }
+  .cmp-table tbody tr:nth-child(even) td { background: var(--bg); }
+  .cmp-table .y { color: var(--emerald); font-weight: 700; }
+  .cmp-table .n { color: var(--ink-light); }
+  .cmp-table .m { color: var(--amber);    font-weight: 600; }
+
+  /* ───────────────────────────────────────────
+     CALLOUT / TIP BAR
+  ─────────────────────────────────────────── */
+  .tip {
+    background: var(--surface);
+    border-left: 4px solid var(--amber);
+    border-radius: 10px;
+    padding: 14px 18px 14px 36px;
+    font-size: 0.8em;
+    line-height: 1.5;
+    flex-shrink: 0;
+    text-align: left;
+    box-shadow: 0 1px 2px var(--shadow), 0 4px 12px var(--shadow);
+    position: relative;
+  }
+  .tip::before {
+    content: "💡";
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    font-size: 1.1em;
+    line-height: 1;
+  }
+  .tip strong { color: var(--amber); }
+
+  .info {
+    background: var(--surface);
+    border-left: 4px solid var(--blue);
+    border-radius: 10px;
+    padding: 14px 18px 14px 36px;
+    font-size: 0.8em;
+    line-height: 1.5;
+    flex-shrink: 0;
+    text-align: left;
+    box-shadow: 0 1px 2px var(--shadow), 0 4px 12px var(--shadow);
+    position: relative;
+  }
+  .info::before {
+    content: "ℹ️";
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    font-size: 1.1em;
+    line-height: 1;
+  }
+  .info strong { color: var(--blue); }
+
+  /* ───────────────────────────────────────────
+     TWO-COLUMN LAYOUT (text + cards)
+  ─────────────────────────────────────────── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; flex: 1; overflow: hidden; }
+  .two-col .col { display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+
+  /* ───────────────────────────────────────────
+     CHECKLIST (action plan)
+  ─────────────────────────────────────────── */
+  .checklist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: 9px;
+    font-size: 0.82em; line-height: 1.4;
+    padding: 0 !important;
+  }
+  .checklist li::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--emerald);
+    border-radius: 4px;
+    flex-shrink: 0;
+    position: static;
+    margin-top: 1px;
+    display: inline-block;
+    box-sizing: border-box;
+  }
+
+  /* ───────────────────────────────────────────
+     PROGRESS / FOOTER
+  ─────────────────────────────────────────── */
+  .reveal .progress { height: 2px; }
+  .reveal .progress span { background: linear-gradient(90deg, var(--emerald), #2dd4bf); }
+  /* Hide default Reveal controls & slide number — replaced by custom nav bar */
+  .reveal .controls { display: none !important; }
+  .reveal .slide-number { display: none !important; }
+
+  /* Unified nav bar — arrows + slide number in one row */
+  .nav-bar {
+    position: fixed;
+    bottom: 12px;
+    right: 14px;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  .nav-bar button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 3px;
+    color: var(--ink-light);
+    line-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: color 0.15s;
+    filter: drop-shadow(0 0 0.5px rgba(255,255,255,0.3));
+  }
+  .nav-bar button:hover { color: var(--emerald); }
+  .nav-bar button svg { width: 22px; height: 22px; }
+  .nav-bar .nav-slide-num {
+    font-size: 15px;
+    color: var(--ink-light);
+    letter-spacing: 0.02em;
+    padding: 0 2px;
+    cursor: pointer;
+    text-decoration: none;
+    filter: drop-shadow(0 0 0.5px rgba(255,255,255,0.3));
+  }
+  .nav-bar .nav-slide-num:hover { color: var(--emerald); }
+  .nav-bar .nav-fullscreen {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 3px;
+    color: var(--ink-light);
+    line-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: color 0.15s;
+    filter: drop-shadow(0 0 0.5px rgba(255,255,255,0.3));
+    margin-left: 4px;
+  }
+  .nav-bar .nav-fullscreen:hover { color: var(--emerald); }
+  .nav-bar .nav-fullscreen svg { width: 18px; height: 18px; }
+  /* Fullscreen — fill the viewport */
+  :fullscreen .reveal-viewport,
+  :fullscreen .reveal {
+    width: 100vw !important;
+    height: 100vh !important;
+  }
+
+  /* Kill any underlines from Reveal's slide-number links */
+  .reveal .slide-number a { text-decoration: none !important; }
+
+  /* ───────────────────────────────────────────
+     RESOURCE GRID (last slide)
+  ─────────────────────────────────────────── */
+  .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; flex: 1; }
+  .res-block {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: none;
+  }
+  .res-block h3 { font-size: 0.82em; color: var(--emerald-dk); margin: 0 0 8px; }
+  .res-block p, .res-block ul { font-size: 0.76em; margin: 0; }
+  .res-block ul li { padding-left: 1.1em; }
+  .res-block ul li::before { color: var(--emerald); }
+  .res-block code {
+    background: var(--slate-lt);
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 0.95em;
+    font-family: 'Courier New', monospace;
+    color: var(--slate);
+  }
+
+  /* big stat cell */
+  .stat-cell { text-align: center; padding: 8px 0; }
+  .stat-cell .num { font-size: 2.8em; font-weight: 800; color: var(--emerald-dk); line-height: 1; }
+  .stat-cell .lbl { font-size: 0.75em; color: var(--ink-mid); margin-top: 2px; }
+
+  /* ───────────────────────────────────────────
+     TABLE OF CONTENTS OVERLAY
+  ─────────────────────────────────────────── */
+  #toc-overlay {
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    right: 16px;
+    z-index: 100;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    box-shadow: 0 4px 24px var(--shadow-md), 0 1px 4px var(--shadow);
+    padding: 12px 0;
+    width: 300px;
+    max-height: 440px;
+    overflow-y: auto;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  #toc-overlay.visible { display: block; }
+  #toc-overlay .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 16px;
+    cursor: pointer;
+    font-size: 0.78em;
+    line-height: 1.3;
+    color: var(--ink-mid);
+    transition: background 0.15s;
+    text-align: left;
+  }
+  #toc-overlay .toc-item:hover { background: var(--bg); }
+  #toc-overlay .toc-item.active { color: var(--emerald); font-weight: 600; }
+  #toc-overlay .toc-item .toc-num {
+    width: 22px;
+    text-align: right;
+    flex-shrink: 0;
+    font-weight: 600;
+    font-size: 0.9em;
+    color: var(--ink-light);
+  }
+  #toc-overlay .toc-item.active .toc-num { color: var(--emerald); }
+  #toc-overlay .toc-item .toc-title { flex: 1; }
+  #toc-overlay .toc-section {
+    padding: 4px 16px 2px 16px;
+    font-size: 0.65em;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-top: 6px;
+  }
+  #toc-overlay .toc-section:first-child { margin-top: 0; }
+
+  /* Compact checklist for dense slides */
+  .checklist-compact { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; border-left: none !important; }
+  .card .checklist-compact li {
+    display: flex; align-items: flex-start; gap: 6px;
+    font-size: 0.9em; line-height: 1.35; padding: 0 !important; text-align: left;
+  }
+  .card .checklist-compact li::before {
+    content: "" !important; width: 13px !important; height: 13px !important;
+    border: 1.5px solid var(--emerald) !important; border-radius: 3px !important;
+    background: transparent !important;
+    flex-shrink: 0; position: static !important; margin-top: 3px;
+    display: inline-block; box-sizing: border-box;
+    left: auto !important; top: auto !important;
+  }
+
+  /* Make slide number clickable */
+  .reveal .slide-number { cursor: pointer; z-index: 99; }
+
+  /* ───────────────────────────────────────────
+     PRINT — one slide per page (JS-driven)
+  ─────────────────────────────────────────── */
+  @media print {
+    @page { size: 11in 8.5in; margin: 0; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .reveal, .nav-bar, #toc-overlay { display: none !important; }
+    .print-container {
+      display: block !important;
+      width: 11in;
+    }
+    .print-container .print-page {
+      width: 11in;
+      height: 8.5in;
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+      position: relative;
+    }
+    .print-container .print-page:last-child { page-break-after: auto; break-after: auto; }
+    .print-container .print-page > * {
+      transform-origin: top left;
+    }
+  }
+  @media screen { .print-container { display: none !important; } }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+
+<!-- ══════════════════════════ SLIDE 1 — COVER ══════════════════════════ -->
+<section>
+<div class="cover">
+  <div class="eyebrow">Wait Until 8th · Parent Workshop</div>
+  <h1>Raising Kids in a<br>Connected World</h1>
+  <p class="subtitle">Practical steps to protect your kids and their devices</p>
+  <div class="presenter-chip">👤 &nbsp;Benjamin Poiesz</div>
+  <div style="margin-top:20px; display:flex; flex-wrap:wrap; justify-content:center; gap:8px;">
+    <span style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:20px; padding:5px 14px; color:rgba(255,255,255,0.6); font-size:0.7em; letter-spacing:0.02em;">Skype <span style="color:rgba(255,255,255,0.35);">·</span> Web Video Calling</span>
+    <span style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:20px; padding:5px 14px; color:rgba(255,255,255,0.6); font-size:0.7em; letter-spacing:0.02em;">Google <span style="color:rgba(255,255,255,0.35);">·</span> Android Security &amp; Privacy</span>
+    <span style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:20px; padding:5px 14px; color:rgba(255,255,255,0.6); font-size:0.7em; letter-spacing:0.02em;">Meta <span style="color:rgba(255,255,255,0.35);">·</span> Reality Labs</span>
+    <span style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:20px; padding:5px 14px; color:rgba(255,255,255,0.6); font-size:0.7em; letter-spacing:0.02em;">Grammarly <span style="color:rgba(255,255,255,0.35);">·</span> Data, Infra, and Privacy</span>
+    <span style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:20px; padding:5px 14px; color:rgba(255,255,255,0.6); font-size:0.7em; letter-spacing:0.02em;">InfoHawk <span style="color:rgba(255,255,255,0.35);">·</span> Co-Founder</span>
+  </div>
+</div>
+</section>
+
+
+<!-- ══════════════════════════ SLIDE 2 — WHY CONTROLS MATTER (condensed) ══════════════════════════ -->
+<section>
+<div class="slide">
+  <div class="slide-header">
+    <div class="icon" style="background:var(--amber-lt);">⚠️</div>
+    <h2>Why Device Controls Matter</h2>
+  </div>
+  <div class="slide-body">
+    <div class="cards col-3" style="flex:none;">
+      <div class="card amber">
+        <h3 style="font-size:1.1em;">YouTube</h3>
+        <p><strong>Autoplay can take a child from "funny cats" to conspiracy content in a handful of clicks</strong> — all in one sitting.</p>
+        <p style="margin-top:6px; font-size:0.82em; color:var(--ink-mid);">A 2019 NYT investigation confirmed YouTube's algorithm actively recommended extreme content.</p>
+      </div>
+      <div class="card amber">
+        <h3 style="font-size:1.1em;">Instagram</h3>
+        <p><strong>1 in 3 teen girls feel worse about their bodies</strong> after using Instagram — per Meta's own leaked research (2021).</p>
+        <p style="margin-top:6px; font-size:0.82em; color:var(--ink-mid);">In 2024, 42 state attorneys general sued Meta over harmful effects on minors.</p>
+      </div>
+      <div class="card amber">
+        <h3 style="font-size:1.1em;">TikTok</h3>
+        <p><strong>A new video every 15–30 seconds</strong>, each one optimized for your child's psychological triggers. Kids report being unable to stop.</p>
+        <p style="margin-top:6px; font-size:0.82em; color:var(--ink-mid);">A 2023 JAMA study linked 3+ hours/day of TikTok to higher anxiety and depression.</p>
+      </div>
+    </div>
+    <div class="info" style="flex-shrink:0; margin-top:auto;">
+      <strong>It's not just social media.</strong> Kids spend hours on <strong>YouTube</strong> (use YouTube Kids for younger children — it's a separate, filtered app), <strong>Roblox</strong> (has its own parental controls at roblox.com/my/account), and <strong>Discord</strong> (group chats with strangers by default — enable Family Center in settings). These need attention too.
+    </div>
+    <div class="tip">
+      <strong>The good news:</strong> Every major platform has parental tools. They're just buried in settings menus — tonight we dig them out.
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- ══════════════════════════ SECTION BREAK — WIFI (moved up — easiest win first) ══════════════════════════ -->
+<section>
+<div class="section-break coral-bg">
+  <span class="big-icon">📶</span>
+  <div class="section-num">Section 1 of 2</div>
+  <h1>Home WiFi Controls</h1>
+  <p>The easiest win — protects every device on your network, takes 5 minutes, and it's free</p>
+</div>
+</section>
+
+
+<!-- ══════════════════════════ SLIDE 4 — ROUTER CONTROLS ══════════════════════════ -->
+<section>
+<div class="slide">
+  <div class="slide-header">
+    <div class="icon" style="background:var(--amber-lt);">📡</div>
+    <h2>Your Router's Built-In Parental Controls</h2>
+  </div>
+  <div class="slide-body">
+    <div class="cards col-2" style="flex:none;">
+      <div class="card slate">
+        <h3>Comcast / Xfinity (xFi)</h3>
+        <ul>
+          <li>Open the <strong>Xfinity app</strong> → Connected Devices</li>
+          <li>Create a profile per child, assign their devices</li>
+          <li>Set a <strong>bedtime per device</strong> — internet turns off automatically</li>
+          <li>Pause one device or all with one tap</li>
+          <li>Setup guide: <strong>xfinity.com/support/articles/set-up-parental-controls-with-comcast-networking</strong></li>
+        </ul>
+      </div>
+      <div class="card slate">
+        <h3>Verizon (Fios / 5G Home)</h3>
+        <ul>
+          <li>Open <strong>My Verizon</strong> app → Home Network → Parental Controls</li>
+          <li>Block content categories, set time restrictions</li>
+          <li>Pause individual devices</li>
+          <li>Setup guide: <strong>verizon.com/support/residential/internet/essentials/fios-parental-controls-faqs</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:auto; margin-bottom:auto; display:flex; flex-direction:column; gap:12px; flex-shrink:0;">
+      <div class="info">
+        <strong>Covers every device on your home WiFi</strong> — including visitors' devices. No app install needed. But it <strong>doesn't protect on cellular data</strong> or away from home. Always pair with device-level controls too.
+      </div>
+      <div class="tip">
+        <strong>Gaming consoles too:</strong> Use <strong>Nintendo Switch Parental Controls</strong>, <strong>PlayStation Family Management</strong>, or <strong>Xbox Family Settings</strong> to set play time limits, restrict chat, and filter by age rating.
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- ══════════════════════════ SLIDE 5 — DNS FILTERING (condensed) ══════════════════════════ -->
+<section>
+<div class="slide" style="font-size:0.88em;">
+  <div class="slide-header">
+    <div class="icon" style="background:var(--emerald-lt);">🔒</div>
+    <h2>Free DNS Filtering: 5 Minutes, Big Impact</h2>
+  </div>
+  <div class="slide-body">
+    <p style="font-size:0.85em; flex-shrink:0;">DNS is like the internet's phone book — it translates website names into addresses. By switching which "phone book" your router uses, <strong>harmful sites get blocked before they ever load</strong>. Free, no app needed, about 5 minutes.</p>
+    <div class="cards col-2">
+      <div class="card green">
+        <h3>OpenDNS FamilyShield (Free)</h3>
+        <ul>
+          <li>Set your router's DNS to: <strong><code>208.67.222.123</code></strong></li>
+          <li>Secondary: <strong><code>208.67.220.123</code></strong></li>
+          <li>Automatically blocks adult content network-wide</li>
+          <li>No account needed</li>
+        </ul>
+      </div>
+      <div class="card green">
+        <h3>CleanBrowsing (Free)</h3>
+        <ul>
+          <li>Family filter DNS: <strong><code>185.228.168.168</code></strong></li>
+          <li>More aggressive — also blocks mixed-content sites</li>
+          <li>Free tier covers all basic family needs</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cards col-2">
+      <div class="card slate">
+        <h3>Verizon Fios</h3>
+        <ul>
+          <li>Open <strong>myfiosgateway.com</strong> in your browser</li>
+          <li>Password is printed on the side of your router</li>
+          <li>Broadband Connection → DNS Server → enter numbers above</li>
+        </ul>
+      </div>
+      <div class="card amber">
+        <h3>Xfinity</h3>
+        <ul>
+          <li>DNS is <strong>locked</strong> on Xfinity gateways</li>
+          <li>Use the <strong>Xfinity app's content filters</strong> instead (previous slide)</li>
+          <li>Or change DNS on <strong>each device</strong> via Settings → Wi-Fi → DNS</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip">
+      <strong>Other routers:</strong> Try <strong>192.168.1.1</strong> or <strong>10.0.0.1</strong> in your browser → find DNS settings → replace with the numbers above. Call your ISP if stuck.
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- ══════════════════════════ SECTION BREAK — APPLE ══════════════════════════ -->
+<section>
+<div class="section-break">
+  <span class="big-icon">🍎</span>
+  <div class="section-num">Section 2 of 2</div>
+  <h1>First Devices</h1>
+  <p>iPhone · iPad · Mac · Apple Watch — the gold standard for built-in parental controls</p>
+</div>
+</section>
+
+
+<!-- ══════════════════════════ SLIDE 7 — BEST FIRST DEVICES (narrative format) ══════════════════════════ -->
+<section>
+<div class="slide">
+  <div class="slide-header">
+    <div class="icon">🥇</div>
+    <h2>First Devices</h2>
+  </div>
+  <div class="slide-body">
+    <div class="cards col-2" style="flex:none;">
+      <div class="card green">
+        <h3>🍎 Apple</h3>
+        <ul>
+          <li><strong>OS-level content filtering</strong> — all browsers, not just Safari</li>
+          <li><strong>Family Sharing</strong> — manage everything from your phone</li>
+          <li><strong>Ask to Buy</strong> — every app needs your approval</li>
+          <li><strong>Locked-down ecosystem</strong> — harder for kids to find workarounds</li>
+        </ul>
+      </div>
+      <div class="card amber">
+        <h3>🤖 Android</h3>
+        <ul>
+          <li><strong>Lower cost</strong> — good options under $200</li>
+          <li><strong>Family Link</strong> app is powerful and free</li>
+          <li>App purchase approvals work well</li>
+          <li>Web filtering <strong>limited to Chrome only</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card slate" style="margin-top:auto; margin-bottom:auto; flex-shrink:0;">
+      <h3>Top Recommendations</h3>
+      <ul>
+        <li><strong>iPad (Wi-Fi only)</strong> — safest first device. No cellular, all content filtering built in.</li>
+        <li><strong>Apple Watch (Family Setup)</strong> — call, text, and location only. No browser, no App Store, no social media.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- ══════════════════════════ SLIDE — APPLE WATCH ══════════════════════════ -->
+<section>
+<div class="slide" style="font-size:1.1em;">
+  <div class="slide-header">
+    <div class="icon">⌚</div>
+    <h2>Apple Watch Family Setup: A Safer First Device</h2>
+  </div>
+  <div class="slide-body">
+    <div class="info" style="flex-shrink:0;">
+      <strong>The idea:</strong> An Apple Watch with cellular lets kids call and text parents — with no browser, no App Store, and no social media.
+    </div>
+    <div class="cards col-2" style="flex:none;">
+      <div class="card green">
+        <h3>How It Works</h3>
+        <ul>
+          <li>Child doesn't need their own iPhone</li>
+          <li>Watch pairs to <strong>your</strong> iPhone instead</li>
+          <li>You manage all settings remotely</li>
+          <li>Apple Watch SE ~$249 + cellular ~$10/mo</li>
+        </ul>
+      </div>
+      <div class="card green">
+        <h3>What You Control</h3>
+        <ul>
+          <li>Approved contacts only — calls and texts</li>
+          <li><strong>Schooltime mode</strong> locks it during class</li>
+          <li>Location always visible to you</li>
+          <li>No web browser, no App Store</li>
+          <li>Emergency SOS always available</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip" style="margin-top:auto; margin-bottom:auto;">
+      <strong>Best for ages 8–12</strong> who need to reach parents but aren't ready for a smartphone. Safety and connection — without the social media risk.
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- ══════════════════════════ SLIDE — CHILD ACCOUNTS ══════════════════════════ -->
+<section>
+<div class="slide">
+  <div class="slide-header">
+    <div class="icon">👶</div>
+    <h2>Set Up a Child Account</h2>
+  </div>
+  <div class="slide-body">
+    <p style="font-size:0.85em; flex-shrink:0;">Apple and Google both let you create a <strong>supervised child account</strong> — this is what unlocks all the parental controls. Without it, your child has an unrestricted adult account.</p>
+    <div class="tip">
+      <strong>The #1 mistake:</strong> Letting your child sign in with <em>your</em> account or an account with an adult birthday. This disables all parental controls. Always create a <strong>separate child account with their real age</strong>.
+    </div>
+    <div class="cards col-2">
+      <div class="card green">
+        <h3>🍎 Apple ID</h3>
+        <ul>
+          <li>Create via <strong>Family Sharing</strong> on your iPhone</li>
+          <li>Under-13s <strong>can't create their own</strong> — you must do it</li>
+          <li>Use their <strong>real birthday</strong> — controls are age-based</li>
+          <li>At 13, they can request to remove supervision — you'll get a notification and can approve or decline</li>
+        </ul>
+      </div>
+      <div class="card slate">
+        <h3>🤖 Google</h3>
+        <ul>
+          <li>Create at <strong>families.google.com</strong> or via Family Link</li>
+          <li>Under-13s get a <strong>supervised account</strong> automatically</li>
+          <li>At 13, supervision lifts automatically — your child chooses to keep or remove it. Set expectations early.</li>
+          <li>Works on Android, Chromebook, and web</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- ══════════════════════════ SLIDE 8 — FAMILY SHARING ══════════════════════════ -->
+<section>
+<div class="slide">
+  <div class="slide-header">
+    <div class="icon">👨‍👩‍👧</div>
+    <h2>Setting Up a Family</h2>
+  </div>
+  <div class="slide-body" style="gap:20px;">
+    <div class="info">
+      <strong>This is step one.</strong> Family Sharing is <strong>free</strong> and connects your family's Apple IDs. Every parental control in the next slides — Screen Time, content filtering, Ask to Buy — <strong>requires this to be set up first</strong>.
+    </div>
+    <ol class="steps" style="flex-shrink:0; gap:14px;">
+      <li><strong>Settings → [Your Name] → Family Sharing → Add Member</strong></li>
+      <li>Create your child's Apple ID with their <strong>real birthday</strong></li>
+      <li>You become <strong>Family Organizer</strong> — you approve every app download</li>
+      <li>Manage all controls remotely <strong>from your own phone</strong></li>
+    </ol>
+    <div class="cards col-3" style="flex:none; margin-top:auto; margin-bottom:auto;">
+      <div class="card green" style="padding:24px;">
+        <h3>Ask to Buy</h3>
+        <p>Every app download — even free ones — needs your approval first.</p>
+      </div>
+      <div class="card green" style="padding:24px;">
+        <h3>Find My</h3>
+        <p>See your child's device location at any time. Transparency builds trust.</p>
+      </div>
+      <div class="card green" style="padding:24px;">
+        <h3>apple.com/family-sharing</h3>
+        <p>Apple's official guide with setup walkthrough, FAQs, and supported features.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- ══════════════════════════ SLIDE 9 — SCREEN TIME + SAFARI (merged) ══════════════════════════ -->
+<section>
+<div class="slide">
+  <div class="slide-header">
+    <div class="icon">⏱️</div>
+    <h2>Apple Screen Time &amp; Content Filtering</h2>
+  </div>
+  <div class="slide-body">
+    <p style="font-size:0.82em; flex-shrink:0;"><strong>Settings → Screen Time</strong> on your child's device — or manage remotely from <em>your</em> Settings → Screen Time → [child's name]</p>
+    <div class="cards col-2">
+      <div class="card green">
+        <h3><span style="background:var(--emerald); color:white; border-radius:50%; width:22px; height:22px; display:inline-flex; align-items:center; justify-content:center; font-size:0.75em; flex-shrink:0;">1</span> Downtime</h3>
+        <p>Blocks all apps on a schedule. Set it for bedtime and school hours — only apps you approve stay available.</p>
+      </div>
+      <div class="card green">
+        <h3><span style="background:var(--emerald); color:white; border-radius:50%; width:22px; height:22px; display:inline-flex; align-items:center; justify-content:center; font-size:0.75em; flex-shrink:0;">2</span> Communication Limits</h3>
+        <p>Restrict calls and texts to approved contacts only — even during Downtime. Keeps strangers out.</p>
+      </div>
+      <div class="card green">
+        <h3><span style="background:var(--emerald); color:white; border-radius:50%; width:22px; height:22px; display:inline-flex; align-items:center; justify-content:center; font-size:0.75em; flex-shrink:0;">3</span> Content &amp; Privacy + Web Filtering</h3>
+        <p>Block adult websites, restrict explicit music, set age ratings. Filtering works at the OS level — <strong>all browsers, not just Safari</strong>. Add <strong>tiktok.com</strong>, <strong>instagram.com</strong>, <strong>snapchat.com</strong> to the "Never Allow" list.</p>
+      </div>
+      <div class="card green">
+        <h3><span style="background:var(--emerald); color:white; border-radius:50%; width:22px; height:22px; display:inline-flex; align-items:center; justify-content:center; font-size:0.75em; flex-shrink:0;">4</span> Always Allowed</h3>
+        <p>Apps that work during Downtime — Phone, Maps, and educational apps you specifically approve.</p>
+      </div>
+    </div>
+    <div class="tip">
+      <strong>Critical step:</strong> Set a <strong>Screen Time passcode they don't know</strong> — without it, they can turn everything off.
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- ══════════════════════════ SLIDE 11 — MAC ══════════════════════════ -->
+<section>
+<div class="slide" style="font-size:1.05em;">
+  <div class="slide-header">
+    <div class="icon">💻</div>
+    <h2>Getting a Real Computer</h2>
+  </div>
+  <div class="slide-body">
+    <div class="info">
+      <strong>Computers are different.</strong> An iPad is a consumption device — a Mac is a <strong>creation device</strong>. Your child will need it for school, projects, and learning to code.
+    </div>
+    <div class="tip">
+      <strong>Why Mac:</strong> Staying in the Apple ecosystem keeps parental controls simple — same Screen Time, same Family Sharing, same rules. Macs can do everything a Windows PC can (often more), and they're the primary computer for most AI and software developers. Windows and Linux lack reliable built-in parental controls.
+    </div>
+    <div class="cards col-2" style="flex:none; margin-top:auto; margin-bottom:auto;">
+      <div class="card slate">
+        <h3>Setup (2 minutes)</h3>
+        <ol class="steps" style="margin-top:6px;">
+          <li>Open <strong>System Settings → Screen Time</strong></li>
+          <li>Select your child's name from Family Sharing</li>
+          <li>Same controls as iPhone sync automatically</li>
+          <li>Set a Screen Time passcode they don't know</li>
+        </ol>
+      </div>
+      <div class="card green">
+        <h3>Two Quick Wins</h3>
+        <p style="margin-bottom:6px;"><strong>Use a Standard Account</strong> — not Admin. Your child can't install software or change settings without your password.</p>
+        <p><strong>Web filtering carries over</strong> — the same content rules from iPhone apply automatically.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+
+
+<!-- ══════════════════════════ SLIDE — CHECKLIST HANDOUT ══════════════════════════ -->
+<section>
+<div class="slide" style="font-size:0.92em;">
+  <div class="slide-header">
+    <div class="icon">📋</div>
+    <h2>Your Checklist — Do This Week</h2>
+  </div>
+  <div class="slide-body" style="gap:8px;">
+    <div class="cards col-3" style="gap:10px;">
+      <div class="card green">
+        <h3 style="font-size:1.15em;">Home WiFi</h3>
+        <ul class="checklist-compact">
+          <li>Enable parental controls in ISP app</li>
+          <li>Set WiFi bedtime per device</li>
+          <li>Change DNS to OpenDNS FamilyShield</li>
+        </ul>
+      </div>
+      <div class="card slate">
+        <h3 style="font-size:1.15em;">Child Accounts</h3>
+        <ul class="checklist-compact">
+          <li>Create child Apple ID (real birthday)</li>
+          <li>Or Google child account via Family Link</li>
+          <li>Never use your account or fake age</li>
+        </ul>
+      </div>
+      <div class="card amber">
+        <h3 style="font-size:1.15em;">First Device</h3>
+        <ul class="checklist-compact">
+          <li>iPad (Wi-Fi) or Apple Watch first</li>
+          <li>Set up Family Sharing</li>
+          <li>Enable Ask to Buy</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cards col-3" style="gap:10px;">
+      <div class="card green">
+        <h3 style="font-size:1.15em;">Screen Time</h3>
+        <ul class="checklist-compact">
+          <li>Downtime for bedtime &amp; school</li>
+          <li>Communication Limits on</li>
+          <li>Limit Adult Websites</li>
+          <li>Block additional sites (e.g. TikTok)</li>
+          <li>Set a passcode they don't know</li>
+        </ul>
+      </div>
+      <div class="card slate">
+        <h3 style="font-size:1.15em;">Mac Setup</h3>
+        <ul class="checklist-compact">
+          <li>System Settings → Screen Time</li>
+          <li>Controls sync from iPhone</li>
+          <li>Standard user, not Admin</li>
+        </ul>
+      </div>
+      <div class="card amber">
+        <h3 style="font-size:1.15em;">Chat with Kids</h3>
+        <ul class="checklist-compact">
+          <li>Tell them what you set up and why</li>
+          <li>Agree on tech-free zones</li>
+          <li>Loosen rules as trust grows</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<!-- ══════════════════════════ SLIDE 16 — CLOSING RECAP ══════════════════════════ -->
+<section>
+<div class="section-break" style="background: var(--emerald-dk) !important; text-align:center; align-items:center;">
+  <span class="big-icon">✅</span>
+  <h1>You've Got This</h1>
+  <div style="margin-top:16px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; max-width:860px; width:100%;">
+    <div style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:16px 18px; text-align:left;">
+      <div style="font-size:0.7em; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--emerald); margin-bottom:6px;">Tonight</div>
+      <div style="font-size:0.85em; color:rgba(255,255,255,0.9); line-height:1.5;"><strong style="color:white;">Start with your WiFi.</strong> Change DNS to OpenDNS FamilyShield — free, 5 minutes, protects every device.</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:16px 18px; text-align:left;">
+      <div style="font-size:0.7em; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--emerald); margin-bottom:6px;">This week</div>
+      <div style="font-size:0.85em; color:rgba(255,255,255,0.9); line-height:1.5;"><strong style="color:white;">Lock down one device.</strong> Family Sharing + Screen Time (Apple) or Family Link (Android).</div>
+    </div>
+    <div style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:16px 18px; text-align:left;">
+      <div style="font-size:0.7em; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--emerald); margin-bottom:6px;">Always</div>
+      <div style="font-size:0.85em; color:rgba(255,255,255,0.9); line-height:1.5;"><strong style="color:white;">Talk to your kids.</strong> Tell them what you set up and why. Controls are scaffolding — the goal is independence.</div>
+    </div>
+  </div>
+  <div style="margin-top:14px; max-width:860px; width:100%; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:16px 22px; text-align:left;">
+    <div style="font-size:0.85em; color:rgba(255,255,255,0.9); line-height:1.5;">Technology isn't the enemy — it's their future. Kids who learn to use computers well will have a <strong style="color:white;">superpower</strong>. Your job isn't to keep them away from screens forever. It's to <strong style="color:white;">build the guardrails</strong> so they can explore safely, build confidence, and develop good judgment on their own.</div>
+  </div>
+  <div style="margin-top:14px; display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15); border-radius:40px; padding:10px 24px;">
+    <span style="font-size:1em;">👤</span>
+    <span style="color:white; font-size:0.95em; font-weight:500;">Benjamin Poiesz</span>
+  </div>
+</div>
+</section>
+
+
+<!-- ══════════════════════════ SLIDE 17 — Q&A ══════════════════════════ -->
+<section>
+<div class="section-break" style="background: var(--slate) !important; text-align:center; align-items:center;">
+  <span class="big-icon">🙋</span>
+  <h1>Got Questions?</h1>
+  <p style="font-size:1.1em; max-width:600px; margin:0 auto;">Let's talk through anything — specific devices, tricky situations, or where to start.</p>
+  <div style="margin-top:36px; display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15); border-radius:40px; padding:10px 24px;">
+    <span style="font-size:1em;">👤</span>
+    <span style="color:white; font-size:0.95em; font-weight:500;">Benjamin Poiesz</span>
+  </div>
+</div>
+</section>
+
+
+</div><!-- .slides -->
+</div><!-- .reveal -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    controls: true,
+    controlsTutorial: true,
+    progress: true,
+    slideNumber: 'c/t',
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    backgroundTransition: 'fade',
+    center: false,
+    width: 1100,
+    height: 700,
+    margin: 0.01,
+    minScale: 0.2,
+    maxScale: 5.0
+  });
+
+  // ── Print support — render slides as static pages ──
+  (function() {
+    var container = null;
+    window.addEventListener('beforeprint', function() {
+      if (container) container.remove();
+      container = document.createElement('div');
+      container.className = 'print-container';
+
+      var sections = document.querySelectorAll('.reveal .slides > section');
+      var slideW = Reveal.getConfig().width;   // 1100
+      var slideH = Reveal.getConfig().height;  // 700
+      // Scale to fit 11in x 8.5in at 96dpi = 1056 x 816
+      var pageW = 1056;
+      var pageH = 816;
+      var scale = Math.min(pageW / slideW, pageH / slideH);
+
+      sections.forEach(function(section) {
+        var page = document.createElement('div');
+        page.className = 'print-page';
+
+        var clone = section.cloneNode(true);
+        clone.style.cssText = 'display:block !important; position:absolute; top:0; left:0; width:' + slideW + 'px; height:' + slideH + 'px; transform:scale(' + scale + '); transform-origin:top left; opacity:1; visibility:visible;';
+
+        // Force-show the inner content
+        var inner = clone.querySelector('.slide, .cover, .section-break');
+        if (inner) {
+          inner.style.width = slideW + 'px';
+          inner.style.height = slideH + 'px';
+          inner.style.boxShadow = 'none';
+          inner.style.borderRadius = '0';
+        }
+
+        page.appendChild(clone);
+        container.appendChild(page);
+      });
+
+      document.body.appendChild(container);
+    });
+
+    window.addEventListener('afterprint', function() {
+      if (container) { container.remove(); container = null; }
+    });
+  })();
+
+  // ── Custom nav bar (arrows + slide number) ──
+  (function() {
+    var bar = document.createElement('div');
+    bar.className = 'nav-bar';
+    bar.innerHTML =
+      '<button onclick="Reveal.prev()" title="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>' +
+      '<button onclick="Reveal.next()" title="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></button>' +
+      '<span class="nav-slide-num"></span>' +
+      '<button class="nav-fullscreen" title="Fullscreen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg></button>';
+    document.body.appendChild(bar);
+
+    var numEl = bar.querySelector('.nav-slide-num');
+    function updateNum() {
+      var idx = Reveal.getIndices();
+      var total = Reveal.getTotalSlides();
+      numEl.textContent = (idx.h + 1) + ' / ' + total;
+    }
+    Reveal.on('slidechanged', updateNum);
+    Reveal.on('ready', updateNum);
+
+    // Fullscreen toggle
+    bar.querySelector('.nav-fullscreen').addEventListener('click', function() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(function(){});
+      } else {
+        document.exitFullscreen();
+      }
+    });
+    document.addEventListener('fullscreenchange', function() {
+      setTimeout(function() { Reveal.layout(); }, 100);
+    });
+  })();
+
+  // ── Table of Contents ──
+  (function() {
+    var overlay = document.createElement('div');
+    overlay.id = 'toc-overlay';
+    document.body.appendChild(overlay);
+
+    var titles = [
+      'Raising Kids in a Connected World',
+      'Why Device Controls Matter',
+      'Section 1: Home WiFi Controls',
+      'Your Router\u2019s Built-In Parental Controls',
+      'Free DNS Filtering',
+      'Section 2: First Devices',
+      'First Devices',
+      'Apple Watch Family Setup',
+      'Set Up a Child Account',
+      'Setting Up a Family',
+      'Apple Screen Time & Content Filtering',
+      'Getting a Real Computer',
+      'Your Checklist',
+      'You\u2019ve Got This',
+      'Got Questions?'
+    ];
+
+    var sections = { 2: 'WiFi', 5: 'Apple', 13: 'Closing' };
+
+    function buildTOC() {
+      var current = Reveal.getIndices().h;
+      var html = '';
+      for (var i = 0; i < titles.length; i++) {
+        if (sections[i]) {
+          html += '<div class="toc-section">' + sections[i] + '</div>';
+        }
+        var active = i === current ? ' active' : '';
+        html += '<div class="toc-item' + active + '" data-index="' + i + '">' +
+          '<span class="toc-num">' + (i + 1) + '</span>' +
+          '<span class="toc-title">' + titles[i] + '</span></div>';
+      }
+      overlay.innerHTML = html;
+
+      overlay.querySelectorAll('.toc-item').forEach(function(item) {
+        item.addEventListener('click', function() {
+          Reveal.slide(parseInt(this.dataset.index));
+          overlay.classList.remove('visible');
+        });
+      });
+    }
+
+    // Toggle on slide number click
+    document.addEventListener('click', function(e) {
+      var slideNum = document.querySelector('.nav-slide-num');
+      if (slideNum && slideNum.contains(e.target)) {
+        e.stopPropagation();
+        buildTOC();
+        overlay.classList.toggle('visible');
+        return;
+      }
+      if (!overlay.contains(e.target)) {
+        overlay.classList.remove('visible');
+      }
+    });
+
+    // Close on slide change
+    Reveal.on('slidechanged', function() {
+      overlay.classList.remove('visible');
+    });
+  })();
+</script>
+</body>
+</html>

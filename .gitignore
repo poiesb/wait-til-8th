@@ -1,0 +1,7 @@
+.DS_Store
+.playwright-mcp/
+.claude/
+test-results/
+node_modules/
+package.json
+package-lock.json
