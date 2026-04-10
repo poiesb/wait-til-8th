@@ -141,11 +141,48 @@
   /* ───────────────────────────────────────────
      COVER SLIDE
   ─────────────────────────────────────────── */
+  @keyframes blob-1 {
+    0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+    20%  { transform: translate(15%, -12%) scale(1.12) rotate(8deg); }
+    40%  { transform: translate(-5%, 18%) scale(0.92) rotate(-5deg); }
+    60%  { transform: translate(20%, 5%) scale(1.08) rotate(12deg); }
+    80%  { transform: translate(-10%, -8%) scale(0.95) rotate(-8deg); }
+    100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  }
+  @keyframes blob-2 {
+    0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+    25%  { transform: translate(-18%, 10%) scale(1.1) rotate(-10deg); }
+    50%  { transform: translate(12%, -15%) scale(0.88) rotate(6deg); }
+    75%  { transform: translate(-8%, -10%) scale(1.06) rotate(-12deg); }
+    100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  }
+  @keyframes blob-3 {
+    0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
+    30%  { transform: translate(10%, 15%) scale(1.15) rotate(15deg); }
+    60%  { transform: translate(-15%, -5%) scale(0.9) rotate(-6deg); }
+    100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  }
+  @keyframes hue-cycle-1 {
+    0%   { filter: hue-rotate(0deg); }
+    33%  { filter: hue-rotate(40deg); }
+    66%  { filter: hue-rotate(-30deg); }
+    100% { filter: hue-rotate(0deg); }
+  }
+  @keyframes hue-cycle-2 {
+    0%   { filter: hue-rotate(0deg); }
+    33%  { filter: hue-rotate(-45deg); }
+    66%  { filter: hue-rotate(35deg); }
+    100% { filter: hue-rotate(0deg); }
+  }
+  @keyframes hue-cycle-3 {
+    0%   { filter: hue-rotate(0deg); }
+    50%  { filter: hue-rotate(60deg); }
+    100% { filter: hue-rotate(0deg); }
+  }
+
   .cover {
-    background:
-      radial-gradient(ellipse 60% 50% at 20% 80%, rgba(5,150,105,0.15) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 40% at 80% 20%, rgba(5,150,105,0.10) 0%, transparent 70%),
-      linear-gradient(160deg, #1c1917 0%, #292524 100%) !important;
+    background: linear-gradient(160deg, #1c1917 0%, #292524 100%) !important;
+    position: relative;
     display: flex !important;
     flex-direction: column;
     align-items: center;
@@ -154,7 +191,39 @@
     height: 100%;
     padding: 52px;
     box-sizing: border-box;
+    overflow: hidden;
   }
+  .cover .blob {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+  .cover .blob-1 {
+    width: 65%;
+    height: 55%;
+    left: -10%;
+    bottom: 5%;
+    background: radial-gradient(ellipse at center, rgba(5,150,105,0.22) 0%, transparent 65%);
+    animation: blob-1 16s ease-in-out infinite, hue-cycle-1 22s ease-in-out infinite;
+  }
+  .cover .blob-2 {
+    width: 55%;
+    height: 50%;
+    right: -10%;
+    top: 0%;
+    background: radial-gradient(ellipse at center, rgba(37,99,235,0.16) 0%, transparent 65%);
+    animation: blob-2 19s ease-in-out infinite, hue-cycle-2 26s ease-in-out infinite;
+  }
+  .cover .blob-3 {
+    width: 45%;
+    height: 45%;
+    left: 25%;
+    top: 20%;
+    background: radial-gradient(ellipse at center, rgba(168,85,247,0.12) 0%, transparent 65%);
+    animation: blob-3 14s ease-in-out infinite, hue-cycle-3 18s ease-in-out infinite;
+  }
+  .cover > *:not(.blob) { position: relative; z-index: 1; }
   .cover .eyebrow {
     font-size: 0.75em;
     font-weight: 600;
@@ -612,7 +681,10 @@
 <!-- ══════════════════════════ SLIDE 1 — COVER ══════════════════════════ -->
 <section>
 <div class="cover" style="position:relative;">
-  <img src="qr-code.png" style="position:absolute; top:20px; right:20px; width:80px; height:80px; border-radius:8px; background:white; padding:4px; opacity:0.85;" alt="QR code">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <img src="qr-code.png" style="position:absolute; top:20px; right:20px; width:120px; height:120px; border-radius:8px; background:white; padding:6px; opacity:0.85; z-index:2;" alt="QR code">
   <div class="eyebrow">Wait Until 8th · Parent Workshop</div>
   <h1>Raising Kids in a<br>Connected World</h1>
   <p class="subtitle">Practical steps to protect your kids and their devices</p>
