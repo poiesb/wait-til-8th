@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Speaker Notes — Raising Kids in a Connected World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c1917;
+    --ink-mid: #57534e;
+    --ink-soft: #78716c;
+    --rule: #e7e5e4;
+    --paper: #faf8f4;
+    --emerald: #059669;
+    --emerald-dk: #064e3b;
+  }
+  html, body { margin: 0; padding: 0; background: #555; font-family: 'Inter', system-ui, sans-serif; color: var(--ink); }
+  body { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 32px 16px; }
+  .note-page {
+    background: #fff;
+    width: 8.5in;
+    height: 11in;
+    box-sizing: border-box;
+    padding: 0.6in 0.7in;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    page-break-after: always;
+  }
+  .note-page header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 14px;
+    margin-bottom: 28px;
+  }
+  .page-num {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 44px; font-weight: 700; color: var(--emerald-dk);
+    line-height: 1;
+  }
+  .page-num span { color: var(--ink-soft); font-weight: 400; font-size: 26px; }
+  .label {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-soft);
+  }
+  .title-block {
+    margin-bottom: 36px;
+  }
+  .eyebrow {
+    font-size: 14px; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--emerald);
+    margin-bottom: 12px;
+  }
+  .title-block h1 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 1.15;
+    margin: 0;
+    color: var(--ink);
+    text-wrap: pretty;
+  }
+  .notes {
+    flex: 1;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .notes p { margin: 0 0 14px 0; text-wrap: pretty; }
+  .notes strong { color: var(--emerald-dk); }
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 14px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: var(--ink-soft);
+    letter-spacing: 0.06em;
+  }
+  footer .next { font-style: italic; max-width: 60%; text-align: right; }
+  .print-hint {
+    position: fixed; top: 12px; left: 12px;
+    background: #111; color: #fafaf9;
+    padding: 10px 16px; border-radius: 8px;
+    font-size: 13px; line-height: 1.4; max-width: 340px; z-index: 1000;
+  }
+  .print-hint kbd {
+    background: #333; padding: 2px 6px; border-radius: 4px;
+    font-family: 'Courier New', monospace; font-size: 11px;
+  }
+  @media print {
+    @page { size: letter portrait; margin: 0; }
+    html, body { background: #fff; padding: 0; margin: 0; }
+    body { padding: 0; gap: 0; }
+    .note-page {
+      box-shadow: none !important;
+      margin: 0;
+      page-break-after: always;
+    }
+    .note-page:last-child { page-break-after: auto; }
+    .print-hint { display: none !important; }
+  }
+</style>
+</head>
+<body>
+  <div class="print-hint">
+    <strong>Speaker Notes</strong> — one slide per page.<br/>
+    Press <kbd>Cmd</kbd>+<kbd>P</kbd> → <strong>Save as PDF</strong>. Margins: None.
+  </div>
+  <section class="note-page">
+    <header>
+      <div class="page-num">01 <span>/ 16</span></div>
+      <div class="label">Cover</div>
+    </header>
+    <div class="title-block">
+      
+      <h1>Raising Kids in a Connected World</h1>
+    </div>
+    <div class="notes"><p>Open warmly. Thank parents for coming. Ask: how many of you feel like the tech is moving faster than your ability to keep up? Hands go up. Good — that's normal. Tonight is practical. By the end, you'll have a WiFi change you can make in five minutes, a way to lock down one device, and a one-page handout to take home.</p><p>This will be a little technical, if I say a word or concept that doesn't make sense and I went over too fast, raise a hand and stop me!</p></div>
+    <footer>
+      <div>Raising Kids in a Connected World · Parent Workshop</div>
+      <div class="next">→ Next: The internet wasn't designed for kids.</div>
+    </footer>
+  </section>
+<section class="note-page">
+    <header>
+      <div class="page-num">02 <span>/ 16</span></div>
+      <div class="label">What Kids Face Online</div>
+    </header>
+    <div class="title-block">
+      <div class="eyebrow">The Landscape</div>
+      <h1>The internet wasn't designed for kids.</h1>
+    </div>
+    <div class="notes"><p>One idea to anchor the night: the internet wasn't designed with kids in mind. It was designed for adults (and it wasn't designed for privacy either), and kids are wedged into it. That creates three categories of risk: content they weren't meant to see, contact with people who aren't who they say they are, and platforms engineered to maximize time and spending. The good news — every device and platform has controls built in. They're just buried. Our job tonight is to find them.</p></div>
+    <footer>
+      <div>Raising Kids in a Connected World · Parent Workshop</div>
+      <div class="next">→ Next: Home WiFi</div>
+    </footer>
+  </section>
+<section class="note-page">
+    <header>
+      <div class="page-num">03 <span>/ 16</span></div>
+      <div class="label">Section · Home WiFi</div>
+    </header>
+    <div class="title-block">
+      
+      <h1>Home WiFi</h1>
+    </div>
+    <div class="notes"><p>Transition: the single easiest win — and the one most parents haven't done — is at the router. Your home WiFi is a chokepoint. One setting change there protects every device in your house, including your kids' friends' devices when they come over.</p></div>
+    <footer>
+      <div>Raising Kids in a Connected World · Parent Workshop</div>
+      <div class="next">→ Next: The router is a good place to start.</div>
+    </footer>
+  </section>
+<section class="note-page">
+    <header>
+      <div class="page-num">04 <span>/ 16</span></div>
+      <div class="label">Router Controls</div>
+    </header>
+    <div class="title-block">
+      <div class="eyebrow">Router Controls</div>
+      <h1>The router is a good place to start.</h1>
+    </div>
+    <div class="notes"><p>Xfinity: use the Xfinity app. Create a profile per child, assign their devices, set a bedtime. Internet turns off automatically. Verizon: My Verizon app → Home Network → Parental Controls. Block categories, set times, pause devices. Both are free. Both take under ten minutes. Important caveat: this protects the home network only. Cellular data and away-from-home WiFi are not covered. So pair with device controls. Mention consoles too — Nintendo, PlayStation, Xbox all have family settings for play time and chat restrictions.</p></div>
+    <footer>
+      <div>Raising Kids in a Connected World · Parent Workshop</div>
+      <div class="next">→ Next: Two numbers, and harmful sites stop loading.</div>
+    </footer>
+  </section>
+<section class="note-page">
+    <header>
+      <div class="page-num">05 <span>/ 16</span></div>
+      <div class="label">DNS Filtering</div>
+    </header>
+    <div class="title-block">
+      <div class="eyebrow">DNS Filtering · Free · ~5 min</div>
+      <h1>Two numbers, and harmful sites stop loading.</h1>
+    </div>
+    <div class="notes"><p>DNS is the internet's phone book. When you type instagram-dot-com, your router asks a DNS server for the address. Change which phone book your router uses, and whole categories of harmful sites never load. OpenDNS FamilyShield: two numbers, memorize these — two-zero-eight dot sixty-seven dot two-twenty-two dot one-two-three and dot two-twenty dot one-two-three. CleanBrowsing is a stricter alternative. Log into your router at one-nine-two dot one-six-eight dot one dot one, paste the numbers in. Five minutes. If you're on Xfinity the gateway is locked, so use the Xfinity app filters from the previous slide instead. This is on the handout.</p></div>
+    <footer>
+      <div>Raising Kids in a Connected World · Parent Workshop</div>
+      <div class="next">→ Next: First Devices</div>
+    </footer>
+  </section>
+<section class="note-page">
+    <header>
+      <div class="page-num">06 <span>/ 16</span></div>
+      <div class="label">Section · First Devices</div>
+    </header>
+    <div class="title-block">
+      
+      <h1>First Devices</h1>
+    </div>
+    <div class="notes"><p>Transition: WiFi is the home base. But kids also leave the home. Now to devices — how to pick one, how to set it up, and how to keep it safe.</p></div>
+    <footer>
+      <div>Raising Kids in a Connected World · Parent Workshop</div>
+      <div class="next">→ Next: A first device is a chance to teach the ropes before they're on their own.</div>
+    </footer>
+  </section>
+<section class="note-page">
+    <header>
+      <div class="page-num">07 <span>/ 16</span></div>
+      <div class="label">Choosing a First Device</div>
+    </header>
+    <div class="title-block">
+      <div class="eyebrow">Apple vs. Android</div>
+      <h1>A first device is a chance to teach the ropes before they're on their own.</h1>
+    </div>
+    <div class="notes"><p>The first device matters a lot. It shapes habits. Apple is my strong recommendation — and I say that having worked across the industry. The reason is simple: content filtering works at the operating system level, so every browser is filtered, not just Safari. Family Sharing is mature. Ask to Buy works. The ecosystem is locked down. Android is cheaper and Family Link is a capable free tool, but web filtering only covers Chrome. A determined kid installs Firefox and the controls are gone. Not a dealbreaker — but worth knowing.</p></div>
+    <footer>
+      <div>Raising Kids in a Connected World · Parent Workshop</div>
+      <div class="next">→ Next: An Apple Watch covers calls and texts without handing over a phone.</div>
+    </footer>
+  </section>
+<section class="note-page">
+    <header>
+      <div class="page-num">08 <span>/ 16</span></div>
+      <div class="label">Apple Watch</div>
+    </header>
+    <div class="title-block">
+      <div class="eyebrow">Ages 8–12 · The sleeper pick</div>
+      <h1>An Apple Watch covers calls and texts without handing over a phone.</h1>
+    </div>
+    <div class="notes"><p>The Apple Watch is the sleeper pick. Family Setup lets you give your child a watch without an iPhone. It pairs to YOUR phone. They can call and text approved contacts, you see location, Schooltime locks it during class, Emergency SOS always works. No browser. No App Store. No social. Around two-fifty for the watch, ten a month for cellular. For the eight-to-twelve range, when kids need to reach you but aren't ready for a phone — this is the answer.</p></div>
+    <footer>
+      <div>Raising Kids in a Connected World · Parent Workshop</div>
+      <div class="next">→ Next: The account matters more than the device.</div>
+    </footer>
+  </section>
+<section class="note-page">
+    <header>
+      <div class="page-num">09 <span>/ 16</span></div>
+      <div class="label">Child Accounts</div>
+    </header>
+    <div class="title-block">
+      <div class="eyebrow">The one we almost made</div>
+      <h1>The account matters more than the device.</h1>
+    </div>
+    <div class="notes"><p>The single biggest mistake parents make: letting kids use the parent's Apple ID, or creating an account with an adult birthday. That disables every parental control. You need a supervised child account with their real age. On Apple: Family Sharing, add member. On Google: families-dot-google-dot-com. A bonus tip: seed their algorithms. Before handing over the device, watch good content together. A fresh account gets the worst recommendations because the algorithm is guessing. A seeded history reinforces quality.</p></div>
+    <footer>
+      <div>Raising Kids in a Connected World · Parent Workshop</div>
+      <div class="next">→ Next: Already have an iPhone? Five minutes in Screen Time.</div>
+    </footer>
+  </section>
+<section class="note-page">
+    <header>
+      <div class="page-num">10 <span>/ 16</span></div>
+      <div class="label">Locked-Down iPhone</div>
+    </header>
+    <div class="title-block">
+      <div class="eyebrow">Ages 10–14 · iPhone as a dumb phone</div>
+      <h1>Already have an iPhone? Five minutes in Screen Time.</h1>
+    </div>
+    <div class="notes"><p>If your child already has an iPhone, or one's been handed down — you don't need a new device. Five minutes in Screen Time turns any iPhone into a phone that calls, texts, and takes photos. The key moves: create a child Apple ID, turn on Content and Privacy Restrictions, disable Safari, App Store, Mail. Communication Limits to contacts only. Set a Screen Time passcode they don't know — I cannot stress this enough. Start fully locked down. Earn trust, unlock one app at a time. Far easier than the reverse.</p></div>
+    <footer>
+      <div>Raising Kids in a Connected World · Parent Workshop</div>
+      <div class="next">→ Next: Four Screen Time settings, and most of it's handled.</div>
+    </footer>
+  </section>
+<section class="note-page">
+    <header>
+      <div class="page-num">11 <span>/ 16</span></div>
+      <div class="label">Screen Time</div>
+    </header>
+    <div class="title-block">
+      <div class="eyebrow">Apple Screen Time</div>
+      <h1>Four Screen Time settings, and most of it's handled.</h1>
+    </div>
+    <div class="notes"><p>Screen Time is where you actually control what the device does day-to-day. Four things to know. Downtime — blocks apps on a schedule, set it for bedtime and school. Communication Limits — restrict calls and texts to approved contacts only, even during Downtime. Content &amp; Privacy plus Web Filtering — block adult sites, restrict explicit music, add TikTok, Instagram, Snapchat to Never Allow. This filters at the OS level — all browsers. Always Allowed — the apps that work during Downtime. Phone, Maps, whatever educational app you approve. Again: passcode they don't know. Without it, they turn it all off.</p></div>
+    <footer>
+      <div>Raising Kids in a Connected World · Parent Workshop</div>
+      <div class="next">→ Next: If you can, stay in one ecosystem.</div>
+    </footer>
+  </section>
+<section class="note-page">
+    <header>
+      <div class="page-num">12 <span>/ 16</span></div>
+      <div class="label">Family Computers</div>
+    </header>
+    <div class="title-block">
+      <div class="eyebrow">When they need a real computer</div>
+      <h1>If you can, stay in one ecosystem.</h1>
+    </div>
+    <div class="notes"><p>Phones are consumption. Computers are creation. Your kid will need a real computer for school, projects, learning to code. My advice: stay in the Apple ecosystem. Same Screen Time, same Family Sharing, same rules — controls sync automatically. Two quick wins. One: create a Standard account, not Admin. They can't install software or change settings without your password. Two: web filtering from the iPhone carries over. Same rules, no reconfiguration.</p></div>
+    <footer>
+      <div>Raising Kids in a Connected World · Parent Workshop</div>
+      <div class="next">→ Next: Tonight. This week. Always.</div>
+    </footer>
+  </section>
+<section class="note-page">
+    <header>
+      <div class="page-num">13 <span>/ 16</span></div>
+      <div class="label">Section · Tonight</div>
+    </header>
+    <div class="title-block">
+      
+      <h1>Tonight. This week. Always.</h1>
+    </div>
+    <div class="notes"><p>Transition: you've got the concepts. Now the action. What to do tonight, this week, and always.</p></div>
+    <footer>
+      <div>Raising Kids in a Connected World · Parent Workshop</div>
+      <div class="next">→ Next: You've got this.</div>
+    </footer>
+  </section>
+<section class="note-page">
+    <header>
+      <div class="page-num">14 <span>/ 16</span></div>
+      <div class="label">Closing</div>
+    </header>
+    <div class="title-block">
+      <div class="eyebrow">Your plan</div>
+      <h1>You've got this.</h1>
+    </div>
+    <div class="notes"><p>Tonight's call to action is simple. Tonight: change your DNS. Five minutes, free, protects everyone. This week: lock down one device — Family Sharing plus Screen Time, or Family Link. Not all the devices. One. Always: talk to your kids. Tell them what you set up and why. Controls are scaffolding — the goal is independence. Technology isn't the enemy. Kids who learn to use computers well will have a superpower. Your job is to build the guardrails so they can explore safely and develop good judgment.</p></div>
+    <footer>
+      <div>Raising Kids in a Connected World · Parent Workshop</div>
+      <div class="next">→ Next: Raising Kids in a Connected World</div>
+    </footer>
+  </section>
+<section class="note-page">
+    <header>
+      <div class="page-num">15 <span>/ 16</span></div>
+      <div class="label">Take-Home Handout</div>
+    </header>
+    <div class="title-block">
+      <div class="eyebrow">One-page printout</div>
+      <h1>Raising Kids in a Connected World</h1>
+    </div>
+    <div class="notes"><p>This is the handout. Take one on the way out. It mirrors what we just covered — the WiFi changes, the child account setup, the Screen Time checklist — with the actual DNS numbers, URLs, and menu paths. QR code at the bottom links to the full slide deck if you want to come back to something. Suggest one printed on the fridge for a week while you work through it.</p></div>
+    <footer>
+      <div>Raising Kids in a Connected World · Parent Workshop</div>
+      <div class="next">→ Next: Questions</div>
+    </footer>
+  </section>
+<section class="note-page">
+    <header>
+      <div class="page-num">16 <span>/ 16</span></div>
+      <div class="label">Questions</div>
+    </header>
+    <div class="title-block">
+      <div class="eyebrow">Open floor</div>
+      <h1>Questions</h1>
+    </div>
+    <div class="notes"><p>Q&amp;A. Any specific device, any tricky situation — let's go through it. If we run out of time, I'll stick around. The QR code in the corner is the full deck, so you can reference everything we covered tonight.</p></div>
+    <footer>
+      <div>Raising Kids in a Connected World · Parent Workshop</div>
+      <div class="next">— end —</div>
+    </footer>
+  </section>
+</body>
+</html>
