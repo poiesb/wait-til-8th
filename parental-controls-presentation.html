@@ -1034,6 +1034,112 @@
     text-transform: uppercase;
   }
 
+  /* ────────── SCREEN TIME WALKTHROUGH ────────── */
+  .walkthrough {
+    display: flex;
+    gap: 72px;
+    align-items: stretch;
+    flex: 1;
+    min-height: 0;
+  }
+  .walkthrough-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 520px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .walkthrough-list li {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: 28px;
+    padding: 20px 24px 20px 32px;
+    border-left: 4px solid var(--rule);
+    cursor: pointer;
+    transition: border-color 240ms ease, background 240ms ease, transform 240ms ease;
+  }
+  .walkthrough-list li:hover {
+    background: rgba(15, 118, 110, 0.04);
+    border-left-color: var(--ink-soft);
+  }
+  .walkthrough-list li.is-active {
+    border-left-color: var(--emerald);
+    background: rgba(15, 118, 110, 0.06);
+  }
+  .walkthrough-list .step-num {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+    min-width: 56px;
+  }
+  .walkthrough-list li.is-active .step-num { color: var(--emerald); }
+  .walkthrough-list .step-title {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  .walkthrough-stage {
+    flex: 1;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    min-width: 0;
+  }
+  .walkthrough-frame {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .walkthrough-frame img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 360ms ease, transform 480ms cubic-bezier(.2,.7,.2,1);
+    border-radius: 18px;
+    pointer-events: none;
+  }
+  .walkthrough-frame img.is-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .walkthrough-caption {
+    position: relative;
+    margin-top: 28px;
+    min-height: 80px;
+    width: 100%;
+    text-align: center;
+  }
+  .walkthrough-caption span {
+    position: absolute;
+    inset: 0;
+    font-size: 28px;
+    line-height: 1.4;
+    color: var(--ink-mid);
+    opacity: 0;
+    transition: opacity 320ms ease;
+  }
+  .walkthrough-caption span.is-active { opacity: 1; }
+
   /* Printing the deck: hide everything except handout slide, scale it to fit a letter page */
   @media print {
     @page { size: letter; margin: 0; }
@@ -1106,7 +1212,7 @@
 <section class="slide" data-label="02 What Kids Face Online">
   <div class="run-head">
     <span>The Landscape</span>
-    <span>02<span class="dot"></span>16</span>
+    <span>02<span class="dot"></span>17</span>
   </div>
 
   <span class="eyebrow">The Landscape</span>
@@ -1143,7 +1249,7 @@
 <section class="slide" data-label="04 Router Controls">
   <div class="run-head">
     <span>Home WiFi</span>
-    <span>04<span class="dot"></span>16</span>
+    <span>04<span class="dot"></span>17</span>
   </div>
 
   <span class="eyebrow">Router Controls</span>
@@ -1181,7 +1287,7 @@
 <section class="slide" data-label="05 DNS Filtering">
   <div class="run-head">
     <span>Home WiFi</span>
-    <span>05<span class="dot"></span>16</span>
+    <span>05<span class="dot"></span>17</span>
   </div>
 
   <span class="eyebrow">DNS Filtering · Free · ~5 min</span>
@@ -1232,7 +1338,7 @@
 <section class="slide" data-label="07 Choosing a First Device">
   <div class="run-head">
     <span>First Devices</span>
-    <span>07<span class="dot"></span>16</span>
+    <span>07<span class="dot"></span>17</span>
   </div>
 
   <span class="eyebrow">Apple vs. Android</span>
@@ -1267,7 +1373,7 @@
 <section class="slide" data-label="08 Apple Watch">
   <div class="run-head">
     <span>First Devices</span>
-    <span>08<span class="dot"></span>16</span>
+    <span>08<span class="dot"></span>17</span>
   </div>
 
   <span class="eyebrow">Ages 8–12 · The sleeper pick</span>
@@ -1297,7 +1403,7 @@
 <section class="slide" data-label="09 Child Accounts">
   <div class="run-head">
     <span>First Devices</span>
-    <span>09<span class="dot"></span>16</span>
+    <span>09<span class="dot"></span>17</span>
   </div>
 
   <span class="eyebrow">The one we almost made</span>
@@ -1335,7 +1441,7 @@
 <section class="slide" data-label="10 Locked-Down iPhone">
   <div class="run-head">
     <span>First Devices</span>
-    <span>10<span class="dot"></span>16</span>
+    <span>10<span class="dot"></span>17</span>
   </div>
 
   <span class="eyebrow">Ages 10–14 · iPhone as a dumb phone</span>
@@ -1376,7 +1482,7 @@
 <section class="slide" data-label="11 Screen Time">
   <div class="run-head">
     <span>First Devices</span>
-    <span>11<span class="dot"></span>16</span>
+    <span>11<span class="dot"></span>17</span>
   </div>
 
   <span class="eyebrow">Apple Screen Time</span>
@@ -1412,11 +1518,55 @@
 </section>
 
 
-<!-- ───────── SLIDE 12 — FAMILY COMPUTERS ───────── -->
-<section class="slide" data-label="12 Family Computers">
+<!-- ───────── SLIDE 12 — SCREEN TIME WALKTHROUGH ───────── -->
+<section class="slide" data-label="12 Screen Time Walkthrough" id="slide-screen-time-walkthrough">
   <div class="run-head">
     <span>First Devices</span>
-    <span>12<span class="dot"></span>16</span>
+    <span>12<span class="dot"></span>17</span>
+  </div>
+
+  <span class="eyebrow">What it looks like</span>
+  <h2 class="slide-title" style="margin-bottom: 32px;">Where to find these settings.</h2>
+
+  <div class="walkthrough">
+    <ol class="walkthrough-list">
+      <li data-index="0" class="is-active"><span class="step-num">01</span><span class="step-title">Setup</span></li>
+      <li data-index="1"><span class="step-num">02</span><span class="step-title">Summary</span></li>
+      <li data-index="2"><span class="step-num">03</span><span class="step-title">Requests</span></li>
+      <li data-index="3"><span class="step-num">04</span><span class="step-title">Family</span></li>
+      <li data-index="4"><span class="step-num">05</span><span class="step-title">Options</span></li>
+      <li data-index="5"><span class="step-num">06</span><span class="step-title">Store &amp; Web</span></li>
+      <li data-index="6"><span class="step-num">07</span><span class="step-title">Mac Accounts</span></li>
+    </ol>
+
+    <figure class="walkthrough-stage">
+      <div class="walkthrough-frame">
+        <img data-index="0" class="is-active" src="assets/screenshots/1-screen-time-setup.png" alt="Screen Time setup">
+        <img data-index="1" src="assets/screenshots/2-screen-time-summary.png" alt="Screen Time weekly summary">
+        <img data-index="2" src="assets/screenshots/3-screen-time-request-approve.png" alt="Request and approve flow">
+        <img data-index="3" src="assets/screenshots/4-screen-time-family.png" alt="Family Sharing setup">
+        <img data-index="4" src="assets/screenshots/5-screen-time-options.png" alt="Screen Time options">
+        <img data-index="5" src="assets/screenshots/6-screen-time-app-store-web-limits.png" alt="App Store and web content limits">
+        <img data-index="6" src="assets/screenshots/7-mac-add-user.png" alt="Mac Users and Groups settings">
+      </div>
+      <figcaption class="walkthrough-caption">
+        <span data-index="0" class="is-active"><strong>Start in Settings &rarr; your name &rarr; Family.</strong> The front door to everything else: Screen Time, approvals, purchases.</span>
+        <span data-index="1"><strong>Your child's screen time lands here every week.</strong> Daily average, top apps, full breakdown &mdash; visible on their device and yours.</span>
+        <span data-index="2"><strong>They ask, you approve from anywhere.</strong> Requests come through as a notification you tap to allow &mdash; minutes, an hour, or always.</span>
+        <span data-index="3"><strong>Add each child as a member.</strong> Their age sets the defaults; the Organizer (you) holds the keys.</span>
+        <span data-index="4"><strong>The four settings from the last slide live here.</strong> Plus Communication Limits, Communication Safety, and the all-important Content &amp; Privacy.</span>
+        <span data-index="5"><strong>Set age ratings once and you're done.</strong> Movies, TV, apps, books &mdash; and "Limit Adult Websites" filters every browser on the device.</span>
+        <span data-index="6"><strong>On a shared Mac: your account is Admin, theirs is Standard.</strong> System Settings &rarr; Users &amp; Groups &rarr; Add User. Keep a passcode they don't know &mdash; without it, they can disable everything.</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ───────── SLIDE 13 — FAMILY COMPUTERS ───────── -->
+<section class="slide" data-label="13 Family Computers">
+  <div class="run-head">
+    <span>First Devices</span>
+    <span>13<span class="dot"></span>17</span>
   </div>
 
   <span class="eyebrow">When they need a real computer</span>
@@ -1447,7 +1597,7 @@
 
 
 <!-- ───────── SLIDE 13 — SECTION: TONIGHT ───────── -->
-<section class="slide section-break" data-label="13 Section · Tonight">
+<section class="slide section-break" data-label="14 Section · Tonight">
   <div class="sb-bloom"></div>
   <div class="num"><span>Section 3</span></div>
   <h1>Tonight.<br>This week.<br>Always.</h1>
@@ -1456,10 +1606,10 @@
 
 
 <!-- ───────── SLIDE 14 — TAKE-HOME HANDOUT ───────── -->
-<section class="slide" data-label="14 Closing">
+<section class="slide" data-label="15 Closing">
   <div class="run-head">
     <span>Closing</span>
-    <span>14<span class="dot"></span>16</span>
+    <span>15<span class="dot"></span>17</span>
   </div>
 
   <span class="eyebrow">Your plan</span>
@@ -1490,10 +1640,10 @@
 
 
 <!-- ───────── SLIDE 15 — CLOSING ───────── -->
-<section class="slide handout-slide" data-label="15 Take-Home Handout">
+<section class="slide handout-slide" data-label="16 Take-Home Handout">
   <div class="run-head" style="color: var(--ink-soft);">
     <span>Take-Home Handout</span>
-    <span>15<span class="dot"></span>16</span>
+    <span>16<span class="dot"></span>17</span>
   </div>
 
   <div class="handout-wrap">
@@ -1608,10 +1758,10 @@
 
 
 <!-- ───────── SLIDE 16 — Q&A ───────── -->
-<section class="slide qa-slide" data-label="16 Questions">
+<section class="slide qa-slide" data-label="17 Questions">
   <div class="run-head" style="color: rgba(250,250,249,0.4);">
     <span>Q&amp;A</span>
-    <span style="color: rgba(250,250,249,0.4);">16<span class="dot" style="background: var(--emerald);"></span>16</span>
+    <span style="color: rgba(250,250,249,0.4);">17<span class="dot" style="background: var(--emerald);"></span>17</span>
   </div>
 
   <span class="eyebrow" style="color: var(--emerald);">Open floor</span>
@@ -1628,5 +1778,43 @@
 </section>
 
 </deck-stage>
+
+<script>
+(function () {
+  const slide = document.getElementById('slide-screen-time-walkthrough');
+  if (!slide) return;
+  const items = Array.from(slide.querySelectorAll('.walkthrough-list li'));
+  const imgs = Array.from(slide.querySelectorAll('.walkthrough-frame img'));
+  const caps = Array.from(slide.querySelectorAll('.walkthrough-caption span'));
+  const total = items.length;
+  let current = 0;
+
+  function setActive(i) {
+    const next = ((i % total) + total) % total;
+    current = next;
+    const sync = (els) => els.forEach(el => {
+      el.classList.toggle('is-active', parseInt(el.dataset.index, 10) === next);
+    });
+    sync(items);
+    sync(imgs);
+    sync(caps);
+  }
+
+  items.forEach(li => {
+    li.addEventListener('click', () => setActive(parseInt(li.dataset.index, 10)));
+  });
+
+  const stage = slide.querySelector('.walkthrough-stage');
+  stage.addEventListener('click', () => setActive(current + 1));
+
+  const deck = document.querySelector('deck-stage');
+  if (deck) {
+    deck.addEventListener('slidechange', (e) => {
+      const active = e.detail && e.detail.slide;
+      if (active !== slide && current !== 0) setActive(0);
+    });
+  }
+})();
+</script>
 </body>
 </html>
